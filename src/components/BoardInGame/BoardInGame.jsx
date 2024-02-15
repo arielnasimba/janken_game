@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "../BoardInGame/BoardInGame.css"
 import BoardScore from '../BoardScore/BoardScore'
-import TRIANGLE from "../../assets/images/bg-triangle.svg"
+
 import PaperButton from '../PaperButton/PaperButton'
 import ScissorsButton from '../ScissorsButton/ScissorsButton'
 import RockButton from '../RockButton/RockButton'
@@ -15,9 +15,16 @@ export default function BoardInGame(props) {
     const [activeScissorsBtn, setActiveScissorsBtn] = useState(false);
 
     let btn_player_active = false;
-    let btn_cp_active = true;
+    let btn_cp_active = false;
 
-    let randomBtn
+    let randomBtn = () => {
+        const buttons = [PaperButton, ScissorsButton, RockButton];
+        const randomIndex = Math.floor(Math.random() * buttons.length);
+        return buttons[randomIndex];
+    }
+    let RandomButton = randomBtn(); 
+
+
   return (
 
 
@@ -44,14 +51,11 @@ export default function BoardInGame(props) {
                             {/* computer button */}
                 <div className="right h-[84%] w-[42%]  ">
 
-                    {/* <ScissorsButton /> */}
 
                     <div className="btn_cp  h-full w-full flex justify-center items-center">
 
-
-
-
-                        {!btn_cp_active ? <ScissorsButton /> : 
+                                            {/* here put random button  */}
+                        {!btn_cp_active ?   <RandomButton /> : 
                                                  <div className="area_grey bg-[rgba(20,21,57,0.3)] rounded-[50%] h-[80%] w-[80%]"></div>
                             } 
 
