@@ -7,7 +7,10 @@ import ScissorsButton from '../ScissorsButton/ScissorsButton'
 import RockButton from '../RockButton/RockButton'
 import RuleModal from '../RuleModal/RuleModal'
 
-export default function BoardGame() {
+export default function BoardGame(props) {
+    console.log(props.play);
+
+
   return (
 
 
@@ -23,13 +26,13 @@ export default function BoardGame() {
                             {/* paper button */}
                 <div className="left h-[84%] w-[42%]    ">
 
-                    <PaperButton />
+                    <PaperButton play={props.play} />
                     
                 </div>
                             {/* scissor button */}
                 <div className="right h-[84%] w-[42%]   ">
 
-                    <ScissorsButton />
+                    <ScissorsButton play={props.play} />
 
                 </div>
                 
@@ -39,7 +42,7 @@ export default function BoardGame() {
                         {/* rock button */}
                 <div className="box_bottom h-[84%] w-[42%] ">
 
-                    <RockButton />
+                    <RockButton  play={props.play} />
 
                 </div>
 
@@ -55,9 +58,6 @@ export default function BoardGame() {
             <RuleModal />
 
         </div>
-
-
-
 
     </div>
   )

@@ -34,7 +34,7 @@ export default function BoardScore() {
 
                     <div className="score_box w-full h-[40%] ">
 
-                        <p className='text-[rgb(42, 70, 192)] 
+                        <p className='text-[#2a46c0] 
                         text-center'>score</p>
                     </div>
 

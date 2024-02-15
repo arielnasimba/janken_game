@@ -19,11 +19,29 @@ export default function RuleModal() {
 
         </button>
 
-        <dialog id="my_modal_4" className="modal w-full h-[100rem] flex flex-col ">
+        <dialog id="my_modal_4" className="modal w-full h-[100rem] flex flex-col mb-0 pb-0 
+        min-[1366px]:flex min-[1366px]:flex-col  min-[1366px]:items-center 
+        min-[1366px]:justify-start
+        
+                    ">
 
-            <div className="modal-box w-screen h-[100rem] rounded-none flex flex-col justify-center items-center gap-[7rem] ">
+            <div className="modal-box w-screen h-[100rem] 
+                                rounded-none flex flex-col 
+                                justify-center items-center gap-[7rem] 
+            min-[1366px]:w-[20rem] min-[1366px]:h-[20rem] min-[1366px]:rounded-[5px]">
 
-                <h3 className="font-bold text-[35px] text-center">RULES</h3>
+
+                    <div className="rule_top bg-black w-full h-[5%] flex">
+
+                        <div className="left_rule_top w-[6rem] h-full bg-blue-400">
+                        <h3 className="font-bold text-[35px] text-center m-0 p-0">RULES</h3>
+
+                        </div>
+
+
+
+
+                    </div>
 
 
                     {/* image rule  */}
@@ -34,7 +52,7 @@ export default function RuleModal() {
                 </div>
 
 
-                <div className="modal-action flex justify-center">
+                <div className="modal-action flex justify-center min-[1366px]:bg-black">
 
                   <form method="dialog" >
                     {/* if there is a button, it will close the modal */}
