@@ -1,5 +1,7 @@
 import React from 'react'
 import "../RuleModal/RuleModal.css"
+import CLOSE from "../../assets/images/icon-close.svg"
+import IMAGERULE from "../../assets/images/image-rules.svg"
 
 export default function RuleModal() {
   return (
@@ -17,17 +19,35 @@ export default function RuleModal() {
 
         </button>
 
-        <dialog id="my_modal_4" className="modal">
-        <div className="modal-box w-11/12 max-w-5xl">
-          <h3 className="font-bold text-lg">Hello!</h3>
-          <p className="py-4">Click the button below to close</p>
-          <div className="modal-action">
-            <form method="dialog">
-              {/* if there is a button, it will close the modal */}
-              <button className="btn">Close</button>
-            </form>
-          </div>
-        </div>
+        <dialog id="my_modal_4" className="modal w-full h-[100rem] flex flex-col ">
+
+            <div className="modal-box w-screen h-[100rem] rounded-none flex flex-col justify-center items-center gap-[7rem] ">
+
+                <h3 className="font-bold text-[35px] text-center">RULES</h3>
+
+
+                    {/* image rule  */}
+                <div className="img_area  w-[98%] h-[42%] bg-no-repeat bg-cover "
+                    style={{backgroundImage:`url(${IMAGERULE})`, backgroundSize:`100%`}}>
+
+
+                </div>
+
+
+                <div className="modal-action flex justify-center">
+
+                  <form method="dialog" >
+                    {/* if there is a button, it will close the modal */}
+                    <button className="btn bg-white border-none"> 
+                        <img src={CLOSE} alt="" srcset="" />    
+                    </button>
+
+                  </form>
+
+                </div>
+
+            </div>
+
         </dialog>
     </>
   )
