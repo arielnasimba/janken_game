@@ -5,7 +5,9 @@ import BoardInGame from './components/BoardInGame/BoardInGame';
 
 function App() {
 
-  let test = true;
+
+  const [selectedButton, setSelectedButton] = useState(null);
+
 
   const [inGame, setInGame] = useState(false);
 
@@ -19,7 +21,9 @@ function App() {
   return (
     <>
 
-        {!inGame ? <BoardGame  play={play} /> : <BoardInGame />}
+        {!inGame ?( <BoardGame setSelectedButton={setSelectedButton} play={play} /> )
+                  : 
+                    ( <BoardInGame selectedButton={selectedButton}  /> )}
 
     </>
   )

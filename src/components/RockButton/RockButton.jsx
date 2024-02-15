@@ -12,7 +12,7 @@ export default function RockButton(props) {
 
     <div className='rock_button bg-white h-full w-full rounded-[50%] flex items-center justify-center'>
 
-    <button onClick={()=> {props.play(); display_btn()} }  type="button " className='bg-white w-[80%] h-[80%] rounded-[50%] bg-no-repeat bg-[45%]'
+    <button onClick={()=> {props.play(); display_btn() ; props.setSelectedButton('rock') } }  type="button " className='bg-white w-[80%] h-[80%] rounded-[50%] bg-no-repeat bg-[45%]'
         style={{backgroundImage:`url(${ROCK})`}}>
 
     </button>

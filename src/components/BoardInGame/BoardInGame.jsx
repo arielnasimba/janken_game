@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import "../BoardInGame/BoardInGame.css"
 import BoardScore from '../BoardScore/BoardScore'
 
@@ -8,13 +8,13 @@ import RockButton from '../RockButton/RockButton'
 import RuleModal from '../RuleModal/RuleModal'
 
 export default function BoardInGame(props) {
+    console.log(props);
 
 
     const [activeRockBtn, setActiveRockBtn] = useState(false);
     const [activePaperBtn, setActivePaperBtn] = useState(false);
     const [activeScissorsBtn, setActiveScissorsBtn] = useState(false);
 
-    let btn_player_active = false;
     let btn_cp_active = false;
 
     let randomBtn = () => {
@@ -23,6 +23,32 @@ export default function BoardInGame(props) {
         return buttons[randomIndex];
     }
     let RandomButton = randomBtn(); 
+
+    useEffect(() => {
+        switch (props.selectedButton) {
+          case 'rock':
+            setActiveRockBtn(true);
+            setActivePaperBtn(false);
+            setActiveScissorsBtn(false);
+            break;
+          case 'paper':
+            setActiveRockBtn(false);
+            setActivePaperBtn(true);
+            setActiveScissorsBtn(false);
+            break;
+          case 'scissors':
+            setActiveRockBtn(false);
+            setActivePaperBtn(false);
+            setActiveScissorsBtn(true);
+            break;
+          default:
+            setActiveRockBtn(false);
+            setActivePaperBtn(false);
+            setActiveScissorsBtn(false);
+            break;
+        }
+      }, [props.selectedButton]);
+    
 
 
   return (
@@ -37,11 +63,19 @@ export default function BoardInGame(props) {
 
             <div className="top w-full h-1/2  flex justify-between">
 
+                <div className="left h-[84%] w-[42%]">
+
                             {/* player button */}
-                <div className="left h-[84%] w-[42%]    ">
 
+                        <div className="area_gr  h-[100%] w-[100%]">
 
-                    <PaperButton />
+                        {/* Afficher le bouton sélectionné */}
+                        {activePaperBtn && <PaperButton />}
+                        {activeScissorsBtn && <ScissorsButton />}
+                        {activeRockBtn && <RockButton />}
+
+                        </div>
+
 
                     <div className="text_b text-center">
                         <p className='tracking-[3px] text-[14px] mt-5'>YOU PICKED</p>
