@@ -5,6 +5,7 @@ import TRIANGLE from "../../assets/images/bg-triangle.svg"
 import PaperButton from '../PaperButton/PaperButton'
 import ScissorsButton from '../ScissorsButton/ScissorsButton'
 import RockButton from '../RockButton/RockButton'
+import RuleModal from '../RuleModal/RuleModal'
 
 export default function BoardGame() {
   return (
@@ -44,7 +45,14 @@ export default function BoardGame() {
 
             </div>
 
-            
+
+            </div>
+
+
+                {/* rules modal area */}
+            <div className="bottom_modal_area  w-[90%] h-[2.5rem] flex justify-center">
+
+            <RuleModal />
 
         </div>
 
