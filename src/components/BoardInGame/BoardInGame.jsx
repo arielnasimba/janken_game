@@ -8,7 +8,7 @@ import RockButton from '../RockButton/RockButton'
 import RuleModal from '../RuleModal/RuleModal'
 
 export default function BoardInGame(props) {
-    console.log(props);
+    // console.log(props);
 
 
     const [activeRockBtn, setActiveRockBtn] = useState(false);
@@ -20,9 +20,16 @@ export default function BoardInGame(props) {
     let randomBtn = () => {
         const buttons = [PaperButton, ScissorsButton, RockButton];
         const randomIndex = Math.floor(Math.random() * buttons.length);
-        return buttons[randomIndex];
+        // const randomButton = buttons[randomIndex];
+        // console.log("Random button selected:", randomButton);
+        return randomIndex;
     }
-    let RandomButton = randomBtn(); 
+    const buttons = [PaperButton, ScissorsButton, RockButton];
+    let indexBtn = randomBtn();
+    
+
+    let RandomButton = buttons[indexBtn];  
+    const [btnComputer, setBtnComputer] = useState(RandomButton)
 
     useEffect(() => {
         switch (props.selectedButton) {
@@ -33,10 +40,12 @@ export default function BoardInGame(props) {
             break;
           case 'paper':
             setActiveRockBtn(false);
+
             setActivePaperBtn(true);
             setActiveScissorsBtn(false);
             break;
           case 'scissors':
+
             setActiveRockBtn(false);
             setActivePaperBtn(false);
             setActiveScissorsBtn(true);
@@ -49,6 +58,121 @@ export default function BoardInGame(props) {
         }
       }, [props.selectedButton]);
     
+
+      function btn_computer_det(btn_cp){
+        let res ="";
+        useEffect(() => {
+            console.log(btn_cp);
+             if (btn_cp == 0) {
+                
+                 res = "paper";
+             } else if(btn_cp == 1){
+                res = "scissors";
+
+             }
+             else if(btn_cp == 2){
+                res = "rock";
+
+             }
+                //  case 0:
+                    
+                //     // console.log("paper btn is active for computer");
+                //     // break;
+
+                //  case 1:
+                //     // console.log("scissors btn is active for computer");
+                //     res = "scissors";
+                //     // break;
+
+                //  case 2:
+                //     // console.log("rock btn is active for computer");
+                //     res = "rock";
+                //     // break;
+
+                //  default:
+                //      console.log("Unknown button is active for computer");
+                //      break;
+             
+         });
+
+        return res;
+      }
+
+    btn_computer_det(indexBtn);
+
+    useEffect( () => {
+
+
+        //*  case for rock btn player **/
+        if (activeRockBtn) {
+            console.log("rock btn is active for player");
+            // console.log(indexBtn);
+            // if (indexBtn == 0) {
+            //     console.log("rock btn for computer");
+                
+            // } else if (indexBtn == 1) {
+            //     console.log("paper btn for computer");
+
+            // } else if(indexBtn == 2){
+
+            //     console.log("scissors btn for computer");
+            // }
+
+            
+        }else if (activePaperBtn) {
+            console.log("paper btn is active for player");
+            // console.log(indexBtn);
+            // if (indexBtn == 0) {
+            //     console.log("rock btn for computer");
+                
+            // } else if (indexBtn == 1) {
+            //     console.log("paper btn for computer");
+
+            // } else if(indexBtn == 2){
+
+            //     console.log("scissors btn for computer");
+            // }
+
+        }else if (activeScissorsBtn) {
+            console.log("scissors btn is active for player");
+            // console.log(indexBtn);
+            // if (indexBtn == 0) {
+            //     console.log("rock btn for computer");
+                
+            // } else if (indexBtn == 1) {
+            //     console.log("paper btn for computer");
+
+            // } else if(indexBtn == 2){
+
+            //     console.log("scissors btn for computer");
+            // }
+
+            
+        }
+        
+    });
+
+    // useEffect(() => {
+    //     switch (indexBtn) {
+    //         case 0:
+    //             console.log("paper btn is active for computer");
+
+    //             break;
+
+    //         case 1:
+    //             console.log("scissors btn is active for computer");
+    //             break;
+
+    //         case 2:
+    //             console.log("rock btn is active for computer");
+
+    //             break;
+
+    //         default:
+    //             console.log("Unknown button is active for computer");
+    //             break;
+    //     }
+    // }, [indexBtn]);
 
 
   return (
@@ -69,10 +193,9 @@ export default function BoardInGame(props) {
 
                         <div className="area_gr  h-[100%] w-[100%]">
 
-                        {/* Afficher le bouton sélectionné */}
-                        {activePaperBtn && <PaperButton />}
-                        {activeScissorsBtn && <ScissorsButton />}
-                        {activeRockBtn && <RockButton />}
+                            {activePaperBtn && < PaperButton  />}
+                            {activeScissorsBtn && <ScissorsButton />}
+                            {activeRockBtn && <RockButton />}
 
                         </div>
 
@@ -89,7 +212,7 @@ export default function BoardInGame(props) {
                     <div className="btn_cp  h-full w-full flex justify-center items-center">
 
                                             {/* here put random button  */}
-                        {!btn_cp_active ?   <RandomButton /> : 
+                        {!btn_cp_active ?   btnComputer  : 
                                                  <div className="area_grey bg-[rgba(20,21,57,0.3)] rounded-[50%] h-[80%] w-[80%]"></div>
                             } 
 

@@ -8,7 +8,7 @@ import RockButton from '../RockButton/RockButton'
 import RuleModal from '../RuleModal/RuleModal'
 
 export default function BoardGame(props) {
-    console.log(props.setSelectedButton);
+    // console.log(props.setSelectedButton);
 
 
   return (
