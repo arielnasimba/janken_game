@@ -2,7 +2,7 @@ import React from 'react'
 import "../BoardScore/BoardScore.css"
 import LOGO from "../../assets/images/logo.svg"
 
-export default function BoardScore() {
+export default function BoardScore(props) {
   return (
     <div className='board_score w-[19rem] h-[6rem] outline outline-[rgba(96,110,133,1)] rounded-[5px] flex justify-center items-center'>
 
@@ -42,7 +42,7 @@ export default function BoardScore() {
 
                         <div className="score_value w-full h-[60%] text-center">
 
-                            <span className='text-[42px] opacity-[0.8]'>12</span>
+                            <span className='text-[42px] opacity-[0.8]'>{props.score}</span>
 
                         </div>
 

@@ -8,28 +8,35 @@ import RockButton from '../RockButton/RockButton'
 import RuleModal from '../RuleModal/RuleModal'
 
 export default function BoardInGame(props) {
-    // console.log(props);
+    // console.log(props.score);
 
-
+    //* start list of buttons state */
     const [activeRockBtn, setActiveRockBtn] = useState(false);
     const [activePaperBtn, setActivePaperBtn] = useState(false);
     const [activeScissorsBtn, setActiveScissorsBtn] = useState(false);
+    //*  end list of buttons state */
 
     let btn_cp_active = false;
 
-    let randomBtn = () => {
-        const buttons = [PaperButton, ScissorsButton, RockButton];
-        const randomIndex = Math.floor(Math.random() * buttons.length);
-        // const randomButton = buttons[randomIndex];
-        // console.log("Random button selected:", randomButton);
-        return randomIndex;
+    /** Get random button components
+     * 
+     * @param {*} el1 : button component
+     * @param {*} el2 : button component
+     * @param {*} el3 : button component
+     * @returns a random component
+     */
+    const randomBtn = (el1,el2,el3) => {
+        const arr = [el1, el2, el3]
+        const randomIndex = Math.floor(Math.random() * arr.length);
+        return arr[randomIndex] ;
     }
-    const buttons = [PaperButton, ScissorsButton, RockButton];
-    let indexBtn = randomBtn();
     
+    //** start usestate btn computer **/
+    const [btnComputer, setBtnComputer] = useState(randomBtn(PaperButton, ScissorsButton, RockButton))
+    //** end usestate btn computer **/
 
-    let RandomButton = buttons[indexBtn];  
-    const [btnComputer, setBtnComputer] = useState(RandomButton)
+
+    //** start display btn player  **/
 
     useEffect(() => {
         switch (props.selectedButton) {
@@ -58,130 +65,92 @@ export default function BoardInGame(props) {
         }
       }, [props.selectedButton]);
     
+    //** end display btn player  **/
 
-      function btn_computer_det(btn_cp){
-        let res ="";
-        useEffect(() => {
-            console.log(btn_cp);
-             if (btn_cp == 0) {
-                
-                 res = "paper";
-             } else if(btn_cp == 1){
-                res = "scissors";
 
-             }
-             else if(btn_cp == 2){
-                res = "rock";
 
-             }
-                //  case 0:
-                    
-                //     // console.log("paper btn is active for computer");
-                //     // break;
-
-                //  case 1:
-                //     // console.log("scissors btn is active for computer");
-                //     res = "scissors";
-                //     // break;
-
-                //  case 2:
-                //     // console.log("rock btn is active for computer");
-                //     res = "rock";
-                //     // break;
-
-                //  default:
-                //      console.log("Unknown button is active for computer");
-                //      break;
-             
-         });
-
-        return res;
-      }
-
-    btn_computer_det(indexBtn);
+    //** start check btn player  **/
 
     useEffect( () => {
 
 
         //*  case for rock btn player **/
         if (activeRockBtn) {
-            console.log("rock btn is active for player");
-            // console.log(indexBtn);
-            // if (indexBtn == 0) {
-            //     console.log("rock btn for computer");
+
+            if ( btnComputer.props.id == "rock" ) {
+
+                console.log("rock btn is active for player");
+                console.log("rock btn is active for computer");
                 
-            // } else if (indexBtn == 1) {
-            //     console.log("paper btn for computer");
+            } 
+            else if (btnComputer.props.id == "paper") {
+                console.log("rock btn is active for player");
+                console.log("paper btn is active for computer");
+                
+            } 
+            else if (btnComputer.props.id == "scissors") {
+                console.log("rock btn is active for player");
+                console.log("scissors btn is active for computer");
 
-            // } else if(indexBtn == 2){
-
-            //     console.log("scissors btn for computer");
-            // }
-
+            } 
             
-        }else if (activePaperBtn) {
-            console.log("paper btn is active for player");
-            // console.log(indexBtn);
-            // if (indexBtn == 0) {
-            //     console.log("rock btn for computer");
+        }
+        
+        //*  case for paper btn player **/
+
+        else if (activePaperBtn) {
+
+            if ( btnComputer.props.id == "rock" ) {
+
+                console.log("paper btn is active for player");
+                console.log("rock btn is active for computer");
                 
-            // } else if (indexBtn == 1) {
-            //     console.log("paper btn for computer");
-
-            // } else if(indexBtn == 2){
-
-            //     console.log("scissors btn for computer");
-            // }
-
-        }else if (activeScissorsBtn) {
-            console.log("scissors btn is active for player");
-            // console.log(indexBtn);
-            // if (indexBtn == 0) {
-            //     console.log("rock btn for computer");
+            } 
+            else if (btnComputer.props.id == "paper") {
+                console.log("paper btn is active for player");
+                console.log("paper btn is active for computer");
                 
-            // } else if (indexBtn == 1) {
-            //     console.log("paper btn for computer");
+            } 
+            else if (btnComputer.props.id == "scissors") {
+                console.log("paper btn is active for player");
+                console.log("scissors btn is active for computer");
 
-            // } else if(indexBtn == 2){
+            } 
 
-            //     console.log("scissors btn for computer");
-            // }
+        }
 
+        //*  case for scissors btn player **/
+
+        else if (activeScissorsBtn) {
+
+            if ( btnComputer.props.id == "rock" ) {
+
+                console.log("scissors btn is active for player");
+                console.log("rock btn is active for computer");
+                
+            } 
+            else if (btnComputer.props.id == "paper") {
+                console.log("scissors btn is active for player");
+                console.log("paper btn is active for computer");
+                
+            } 
+            else if (btnComputer.props.id == "scissors") {
+                console.log("scissors btn is active for player");
+                console.log("scissors btn is active for computer");
+
+            } 
             
         }
         
     });
 
-    // useEffect(() => {
-    //     switch (indexBtn) {
-    //         case 0:
-    //             console.log("paper btn is active for computer");
-
-    //             break;
-
-    //         case 1:
-    //             console.log("scissors btn is active for computer");
-    //             break;
-
-    //         case 2:
-    //             console.log("rock btn is active for computer");
-
-    //             break;
-
-    //         default:
-    //             console.log("Unknown button is active for computer");
-    //             break;
-    //     }
-    // }, [indexBtn]);
-
+    //** end check btn player  **/
 
   return (
 
-
-
     <div className='board_in_game h-screen w-screen flex flex-col justify-center items-center gap-[6rem]'>
 
-        <BoardScore />
+        <BoardScore score={props.score}  />
 
         <div className="list_btns w-[19rem]  h-[19rem]  bg-no-repeat bg-center " >
 
@@ -193,9 +162,9 @@ export default function BoardInGame(props) {
 
                         <div className="area_gr  h-[100%] w-[100%]">
 
-                            {activePaperBtn && < PaperButton  />}
-                            {activeScissorsBtn && <ScissorsButton />}
-                            {activeRockBtn && <RockButton />}
+                            {activePaperBtn && < PaperButton key={"paper"} />}
+                            {activeScissorsBtn && <ScissorsButton key={"scissors"} />}
+                            {activeRockBtn && <RockButton key={"rock"} />}
 
                         </div>
 

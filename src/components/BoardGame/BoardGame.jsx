@@ -8,7 +8,7 @@ import RockButton from '../RockButton/RockButton'
 import RuleModal from '../RuleModal/RuleModal'
 
 export default function BoardGame(props) {
-    // console.log(props.setSelectedButton);
+    // console.log(props.setScoreValue);
 
 
   return (
@@ -17,7 +17,7 @@ export default function BoardGame(props) {
 
     <div className='board_game h-screen w-screen flex flex-col justify-center items-center gap-[6rem]'>
 
-        <BoardScore />
+        <BoardScore score={props.score} />
 
         <div className="list_btns w-[19rem]  h-[19rem]  bg-no-repeat bg-center " style={{backgroundImage:`url(${TRIANGLE})`, backgroundSize:`85%`}}>
 
@@ -26,7 +26,7 @@ export default function BoardGame(props) {
                             {/* paper button */}
                 <div className="left h-[84%] w-[42%]    ">
 
-                    <PaperButton  setSelectedButton={props.setSelectedButton} play={props.play} />
+                    <PaperButton setScoreValue={props.setScoreValue}  setSelectedButton={props.setSelectedButton} play={props.play} />
                     
                 </div>
                             {/* scissor button */}
