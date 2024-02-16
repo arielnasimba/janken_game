@@ -8,7 +8,7 @@ import RockButton from '../RockButton/RockButton'
 import RuleModal from '../RuleModal/RuleModal'
 
 export default function BoardInGame(props) {
-    console.log(props.decrease_score);
+    // console.log(props.decrease_score);
 
     const [playerState, setPlayerState] = useState(null);
 
