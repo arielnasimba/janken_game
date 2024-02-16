@@ -10,7 +10,7 @@ function App() {
   const [scoreValue, setScoreValue] = useState(0);
 
   let increase_score = ()=>{
-    setScoreValue({scoreValue: scoreValue+1})
+    setScoreValue(scoreValue+1)
   }
 
 
@@ -26,9 +26,9 @@ function App() {
   return (
     <>
 
-        {!inGame ?( <BoardGame score={scoreValue} setScoreValue={setScoreValue}  setSelectedButton={setSelectedButton} play={play} /> )
+        {!inGame ?( <BoardGame score={scoreValue}   setSelectedButton={setSelectedButton} play={play} /> )
                   : 
-                    ( <BoardInGame score={scoreValue} setScoreValue={setScoreValue}  selectedButton={selectedButton}  /> )}
+                    ( <BoardInGame score={scoreValue} setScoreValue={increase_score}  selectedButton={selectedButton}  /> )}
 
     </>
   )

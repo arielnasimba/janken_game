@@ -8,7 +8,7 @@ import RockButton from '../RockButton/RockButton'
 import RuleModal from '../RuleModal/RuleModal'
 
 export default function BoardInGame(props) {
-    // console.log(props.score);
+    console.log(props.setScoreValue);
 
     //* start list of buttons state */
     const [activeRockBtn, setActiveRockBtn] = useState(false);
@@ -69,82 +69,145 @@ export default function BoardInGame(props) {
 
 
 
-    //** start check btn player  **/
+    //** start check btn player and computer btn **/
 
-    useEffect( () => {
+    // useEffect( () => {
 
 
-        //*  case for rock btn player **/
+    //     //*  case for rock btn player **/
+    //     if (activeRockBtn) {
+
+    //         if ( btnComputer.props.id == "rock" ) {
+
+    //             console.log("rock btn is active for player");
+    //             console.log("rock btn is active for computer");
+    //             console.log("DRAW");
+                
+    //         } 
+    //         else if (btnComputer.props.id == "paper") {
+    //             console.log("rock btn is active for player");
+    //             console.log("paper btn is active for computer");
+    //             console.log("You lose");
+                
+    //         } 
+    //         else if (btnComputer.props.id == "scissors") {
+    //             console.log("rock btn is active for player");
+    //             console.log("scissors btn is active for computer");
+    //                 console.log("You win");
+    //                 // props.setScoreValue();
+
+    //         } 
+            
+    //     }
+        
+    //     //*  case for paper btn player **/
+
+    //     else if (activePaperBtn) {
+
+    //         if ( btnComputer.props.id == "rock" ) {
+
+    //             console.log("paper btn is active for player");
+    //             console.log("rock btn is active for computer");
+    //             console.log("You win");
+    //             // props.setScoreValue();
+                
+    //         } 
+    //         else if (btnComputer.props.id == "paper") {
+    //             console.log("paper btn is active for player");
+    //             console.log("paper btn is active for computer");
+    //             console.log("DRAW");
+                
+    //         } 
+    //         else if (btnComputer.props.id == "scissors") {
+    //             console.log("paper btn is active for player");
+    //             console.log("scissors btn is active for computer");
+    //             console.log("You lose");
+
+    //         } 
+
+    //     }
+
+    //     //*  case for scissors btn player **/
+
+    //     else if (activeScissorsBtn) {
+
+    //         if ( btnComputer.props.id == "rock" ) {
+
+    //             console.log("scissors btn is active for player");
+    //             console.log("rock btn is active for computer");
+    //             console.log("You lose");
+                
+    //         } 
+    //         else if (btnComputer.props.id == "paper") {
+    //             console.log("scissors btn is active for player");
+    //             console.log("paper btn is active for computer");
+    //             console.log("You win");
+    //             // props.setScoreValue();
+                
+    //         } 
+    //         else if (btnComputer.props.id == "scissors") {
+    //             console.log("scissors btn is active for player");
+    //             console.log("scissors btn is active for computer");
+    //             console.log("DRAW");
+
+    //         } 
+            
+    //     }
+        
+    // });
+
+    //** end check btn player and computer btn**/
+
+
+//** start check btn player  **/
+
+useEffect(() => {
+    //* Logique pour vérifier le résultat de la partie */
+    const checkResult = () => {
         if (activeRockBtn) {
-
-            if ( btnComputer.props.id == "rock" ) {
-
-                console.log("rock btn is active for player");
-                console.log("rock btn is active for computer");
-                
+            if (btnComputer.props.id == "rock") {
+                console.log("DRAW");
             } 
             else if (btnComputer.props.id == "paper") {
-                console.log("rock btn is active for player");
-                console.log("paper btn is active for computer");
-                
+                console.log("You lose");
             } 
             else if (btnComputer.props.id == "scissors") {
-                console.log("rock btn is active for player");
-                console.log("scissors btn is active for computer");
+                console.log("You win");
+                props.setScoreValue(score => score + 1); 
+            }
 
+        } else if (activePaperBtn) {
+
+            if (btnComputer.props.id == "paper") {
+                console.log("DRAW");
             } 
-            
-        }
-        
-        //*  case for paper btn player **/
+            else if (btnComputer.props.id == "scissors") {
+                console.log("You lose");
+            } 
+            else if (btnComputer.props.id == "rock") {
+                console.log("You win");
+                props.setScoreValue(score => score + 1); 
+            }
 
-        else if (activePaperBtn) {
 
-            if ( btnComputer.props.id == "rock" ) {
+        } else if (activeScissorsBtn) {
 
-                console.log("paper btn is active for player");
-                console.log("rock btn is active for computer");
-                
+            if (btnComputer.props.id == "scissors") {
+                console.log("DRAW");
+            } 
+            else if (btnComputer.props.id == "rock") {
+                console.log("You lose");
             } 
             else if (btnComputer.props.id == "paper") {
-                console.log("paper btn is active for player");
-                console.log("paper btn is active for computer");
-                
-            } 
-            else if (btnComputer.props.id == "scissors") {
-                console.log("paper btn is active for player");
-                console.log("scissors btn is active for computer");
-
-            } 
-
+                console.log("You win");
+                props.setScoreValue(score => score + 1); 
+            }
         }
+    } 
 
-        //*  case for scissors btn player **/
+    checkResult();
+},[activeRockBtn, activePaperBtn, activeScissorsBtn, btnComputer] );
 
-        else if (activeScissorsBtn) {
-
-            if ( btnComputer.props.id == "rock" ) {
-
-                console.log("scissors btn is active for player");
-                console.log("rock btn is active for computer");
-                
-            } 
-            else if (btnComputer.props.id == "paper") {
-                console.log("scissors btn is active for player");
-                console.log("paper btn is active for computer");
-                
-            } 
-            else if (btnComputer.props.id == "scissors") {
-                console.log("scissors btn is active for player");
-                console.log("scissors btn is active for computer");
-
-            } 
-            
-        }
-        
-    });
-
-    //** end check btn player  **/
 
   return (
 
@@ -199,13 +262,31 @@ export default function BoardInGame(props) {
                 
             </div>
 
-            <div className="bottom w-full h-1/2  flex flex-col justify-start items-center hidden">
+            <div className="bottom w-full h-1/2  flex flex-col justify-start items-center bg-red-400 hidden">
                         {/* rock button */}
-                <div className="box_bottom h-[84%] w-[42%] ">
+                <div className="box_bottom h-[84%] w-[42%] bg-black">
 
-                    <RockButton />
 
                 </div>
+
+            </div>
+
+            <div className="restart_game  w-full h-[68%] flex flex-col items-center justify-end">
+
+                <div className="box_inside  h-[65%] w-[75%] flex flex-col justify-between items-center ">
+
+                    <div className="text_state w-[80%] h-[45%]  text-center">
+                        <h1 className='text-[3.3rem] font-[700] text-white h-full p-0 w-full'>YOU WIN</h1>
+                    </div>
+                            
+                    <div className="btn_play_again_area w-full h-[37%] ">
+
+                    <button className="btn w-full h-full text-[18px] tracking-[2px] text-[rgb(59, 67, 99)] ">PLAY AGAIN</button>
+
+                    </div>
+
+                </div>
+
 
             </div>
 
