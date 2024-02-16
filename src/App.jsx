@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import BoardGame from './components/BoardGame/BoardGame'
 import BoardInGame from './components/BoardInGame/BoardInGame';
@@ -12,6 +12,9 @@ function App() {
   let increase_score = ()=>{
     setScoreValue(scoreValue+1)
   }
+  let decrease_score = ()=>{
+    setScoreValue(scoreValue-1)
+  }
 
 
   const [inGame, setInGame] = useState(false);
@@ -21,14 +24,17 @@ function App() {
     setInGame( {inGame:true});
   }
 
-  // let testT = true;
+  let resetGame = () => {
+    setInGame(false); 
+}
+
 
   return (
     <>
 
         {!inGame ?( <BoardGame score={scoreValue}   setSelectedButton={setSelectedButton} play={play} /> )
                   : 
-                    ( <BoardInGame score={scoreValue} setScoreValue={increase_score}  selectedButton={selectedButton}  /> )}
+                    ( <BoardInGame decrease_score={decrease_score} score={scoreValue} resetGame={resetGame} setScoreValue={increase_score}  selectedButton={selectedButton}  /> )}
 
     </>
   )

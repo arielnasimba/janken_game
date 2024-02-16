@@ -8,7 +8,13 @@ import RockButton from '../RockButton/RockButton'
 import RuleModal from '../RuleModal/RuleModal'
 
 export default function BoardInGame(props) {
-    console.log(props.setScoreValue);
+    console.log(props.decrease_score);
+
+    const [playerState, setPlayerState] = useState(null);
+
+    const changeValue = (value)=>{
+        setPlayerState({playerState : value})
+    }
 
     //* start list of buttons state */
     const [activeRockBtn, setActiveRockBtn] = useState(false);
@@ -163,16 +169,27 @@ export default function BoardInGame(props) {
 
 useEffect(() => {
     //* Logique pour vérifier le résultat de la partie */
+
+
+
     const checkResult = () => {
         if (activeRockBtn) {
             if (btnComputer.props.id == "rock") {
                 console.log("DRAW");
+                setPlayerState("DRAW");
             } 
             else if (btnComputer.props.id == "paper") {
                 console.log("You lose");
+                setPlayerState("LOST");
+                props.decrease_score();
+                // props.setScoreValue(score => score - 1); 
+                
+
             } 
             else if (btnComputer.props.id == "scissors") {
                 console.log("You win");
+                setPlayerState("WIN");
+                // setPlayerState(playerState = "win");
                 props.setScoreValue(score => score + 1); 
             }
 
@@ -180,12 +197,20 @@ useEffect(() => {
 
             if (btnComputer.props.id == "paper") {
                 console.log("DRAW");
+                setPlayerState("DRAW");
             } 
             else if (btnComputer.props.id == "scissors") {
                 console.log("You lose");
+                setPlayerState("LOST");
+                props.decrease_score();
+                // props.setScoreValue(score => score - 1);
+                 
+
             } 
             else if (btnComputer.props.id == "rock") {
                 console.log("You win");
+                setPlayerState("WIN");
+                // setPlayerState(playerState = "win");
                 props.setScoreValue(score => score + 1); 
             }
 
@@ -194,12 +219,22 @@ useEffect(() => {
 
             if (btnComputer.props.id == "scissors") {
                 console.log("DRAW");
+                setPlayerState("DRAW");
             } 
             else if (btnComputer.props.id == "rock") {
                 console.log("You lose");
+                setPlayerState("LOST");
+                props.decrease_score();
+                // props.setScoreValue(score => score - 1); 
+                
+
             } 
             else if (btnComputer.props.id == "paper") {
                 console.log("You win");
+                setPlayerState("WIN");
+
+                // changeValue("win");
+                // ( ()=>  setPlayerState(playerState = "win") );
                 props.setScoreValue(score => score + 1); 
             }
         }
@@ -276,12 +311,14 @@ useEffect(() => {
                 <div className="box_inside  h-[65%] w-[75%] flex flex-col justify-between items-center ">
 
                     <div className="text_state w-[80%] h-[45%]  text-center">
-                        <h1 className='text-[3.3rem] font-[700] text-white h-full p-0 w-full'>YOU WIN</h1>
+                        <h1 className='text-[3.3rem] font-[700] text-white h-full p-0 w-full'>
+                            {playerState}
+                            </h1>
                     </div>
                             
                     <div className="btn_play_again_area w-full h-[37%] ">
 
-                    <button className="btn w-full h-full text-[18px] tracking-[2px] text-[rgb(59, 67, 99)] ">PLAY AGAIN</button>
+                    <button onClick={props.resetGame} className="btn w-full h-full text-[18px] tracking-[2px] text-[rgb(59, 67, 99)] " >PLAY AGAIN</button>
 
                     </div>
 
