@@ -13,7 +13,11 @@ function App() {
     setScoreValue(scoreValue+1)
   }
   let decrease_score = ()=>{
-    setScoreValue(scoreValue-1)
+
+    if (scoreValue > 0) {
+      
+      setScoreValue(scoreValue-1)
+    }
   }
 
 
